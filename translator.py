@@ -4,15 +4,19 @@ class Translator:
         pass
 
     def printMenu(self):
-        # 1. Aggiungi nuova parola
-        # 2. Cerca una traduzione
-        # 3. Cerca con wildcard
-        # 4. Exit
-        pass
+        print("\nMenù principale, cosa vuoi fare?\n")
+        print("1. Aggiungi nuova parola")
+        print("2. Cerca una traduzione")
+        print("3. Cerca con wildcard")
+        print("4. Stampa tutto il dizionario")
+        print("5. Exit\n")
 
-    def loadDictionary(self, dict):
-        # dict is a string with the filename of the dictionary
-        pass
+    def loadDictionary(self, nome_file: str):
+        file = open(nome_file, 'r', encoding="utf-8").read().splitlines()
+        d = {}
+        for riga in file:
+            d[riga.split()[0]] = riga.split()[1]
+        return d
 
     def handleAdd(self, entry):
         # entry is a tuple <parola_aliena> <traduzione1 traduzione2 ...>
