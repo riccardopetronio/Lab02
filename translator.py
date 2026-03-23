@@ -15,7 +15,11 @@ class Translator:
         file = open(nome_file, 'r', encoding="utf-8").read().splitlines()
         d = {}
         for riga in file:
-            d[riga.split()[0]] = riga.split()[1]
+            parti_riga = riga.split(" ")
+            if d.get(parti_riga[0]) is None:
+                d[parti_riga[0]] = [parti_riga[1]]
+            else:
+                d[parti_riga[0]].append(parti_riga[1])
         return d
 
     def handleAdd(self, entry):

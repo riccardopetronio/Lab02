@@ -8,12 +8,11 @@ class Dictionary:
         self.dizionario = tr.loadDictionary(nome_file)
 
     def addWord(self, p_aliena:str, p_tradotta:str):
-        if (self.dizionario.get(p_aliena) is not None) and (self.dizionario.get(p_aliena) == p_tradotta):
+        if (self.dizionario.get(p_aliena) is not None) and (p_tradotta in self.dizionario.get(p_aliena)):
             print("La traduzione è già presente")
+            return
 
-        self.dizionario[p_aliena] = p_tradotta
-
-        print(list(self.dizionario.items())[list(self.dizionario.items()).__len__()-1])
+        print(p_aliena, p_tradotta)
         print("Parola aggiunta!")
         with open("dictionary.txt", "a") as file:
             file.write("\n"+p_aliena+" "+p_tradotta)
@@ -26,8 +25,6 @@ class Dictionary:
         if self.dizionario.get(p_aliena) is not None:
             return self.dizionario[p_aliena]
         return None
-
-    import re
 
     def translateWordWildCard(self, parola_aliena: str):
         # Trasformiamo "p?re" in un pattern "p.re"
